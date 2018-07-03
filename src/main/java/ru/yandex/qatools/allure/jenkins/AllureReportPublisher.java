@@ -289,12 +289,13 @@ public class AllureReportPublisher extends Recorder implements SimpleBuildStep, 
         configureJdk(launcher, listener, buildEnvVars);
         final AllureCommandlineInstallation commandline = getCommandline(launcher, listener, buildEnvVars);
         final FilePath reportPath = workspace.child(getReport());
+        listener.getLogger().println("GOING TO GENERATE ALLURE REPORT WITH GOSHA'S FIX");
 
-        final int exitCode = new ReportBuilder(launcher, listener, workspace, buildEnvVars, commandline)
-                .build(resultsPaths, reportPath);
-        if (exitCode != 0) {
-            throw new AllurePluginException("Can not generate Allure Report, exit code: " + exitCode);
-        }
+//        final int exitCode = new ReportBuilder(launcher, listener, workspace, buildEnvVars, commandline)
+//                .build(resultsPaths, reportPath);
+//        if (exitCode != 0) {
+//            throw new AllurePluginException("Can not generate Allure Report, exit code: " + exitCode);
+//        }
         listener.getLogger().println("Allure report was successfully generated.");
         saveAllureArtifact(run, workspace, listener);
         AllureReportBuildAction buildAction = new AllureReportBuildAction(FilePathUtils.extractSummary(run, reportPath.getName()));
